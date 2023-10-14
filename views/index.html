@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body class="text-bg-success bg-opacity-25">
+    <!-- Nav bar -->
+    <nav class="nav navbar navbar-expand-lg text-bg-success col-12">
+        <div class="container text-black p-3 ">
+            <a class="navbar-brand" href="#"><img src="/images/logo.jpg" alt="brand-image" class=" me-3" width="40px"
+                    height="40px"></a>
+            <h2>Expense Tracker</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link fs-4" data-bs-toggle="collapse" data-bs-target="#profile"
+                            aria-expanded="true" aria-controls="profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link fs-4">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link fs-4">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link fs-4">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="container-fluid mt-3">
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-3 mb-3 collapse " id="profile">
+                <div class="card bg-warning">
+                    <div class="card-header text-center">
+                        <img src="http://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle mb-3" alt="">
+                        <h2 id="namePlaceholder">Jacob</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+                            <li class="list-group-item"><i class="fas fa-list"></i> View Transactions</li>
+                            <li class="list-group-item"><i class="fas fa-coins"></i> Income</li>
+                            <li class="list-group-item"><i class="fas fa-money-bill-wave"></i> Expenses</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-9">
+                <div class="card bg-black text-white">
+                    <div class="card-header text-center">
+                        <h3>Add Your Expenses</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="" id="myForm">
+                            <div class="form-group mb-3">
+                                <label for="category">Category</label>
+                                <select class="form-control" id="category" name="category" required>
+                                    <option disabled selected value="">Select an Item</option>
+                                    <option value="Groceries">Groceries</option>
+                                    <option value="Utilities">Utilities</option>
+                                    <option value="Rent">Rent</option>
+                                    <option value="Fuel">Fuel</option>
+                                    <option value="Clothes">Clothes</option>
+                                    <option value="Drinks">Drinks</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Gifts">Gifts</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="paymentmethod">Payment Method</label>
+                                <select class="form-control" id="pmethod" name="pmethod" required>
+                                    <option disabled selected value="">Select a payment method</option>
+                                    <option value="Bank">Bank</option>
+                                    <option value="Card">Card</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="Others">Others</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="amount">Amount</label>
+                                <input type="text" class="form-control" placeholder="Enter Amount" id="amount"
+                                    name="amount" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="date">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary form-control submit" id="submitbtn">Add Expense</button>
+                            </div>
+                            <div class="alert alert-success alert-dismissible fade show mt-3 text-center d-none"
+                                role="alert" id="successDiv">
+                                <span class="lead fst-italic">Successfully added your exepense.</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="container table-responsive text-bg-primary bg-opacity-25 mb-5 mt-4 border border-3 ">
+                    <!--TABLE 1-->
+                    <table class="table table-info" id="htable">
+                        <div class="d-flex justify-content-around">
+                            <h3 class="text-center fst-italic pt-3 text-black">
+                                Expense Table
+                            </h3>
+                            <h3 class="text-center fst-italic pt-3 text-black"><span class="lead ms-5 fs-3">Last updated
+                                    on </span>
+                                <span class="lead ms-sm-0 text-nowrap" id="lupdatePlaceholder">YYYY-MM-DD</span>
+                            </h3>
+                        </div>
+
+                        <!--TABLE HEAD STARTS HERE-->
+                        <thead class="thead-dark table-danger">
+                            <tr class="nowrap">
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Payment</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <!--TABLE BODY STARTS HERE-->
+                        <tbody class="nowrap" id="expensePlaceholder">
+                            <!-- <tr>
+                                <td>1</td>
+                                <td>Groceries</td>
+                                <td>Cash</td>
+                                <td > &#8377;</td>
+                                <td class="text-nowrap">12/15/23</td>
+                                <td>
+                                    <button class="btn btn-outline-danger delbtn">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                        </tbody>
+                        <!--TABLE FOOT STARTS HERE -->
+                        <tfoot class="table-primary" id="htfoot">
+                            <tr>
+                                <td colspan="3">Total Expense</td>
+                                <td id="totalPlaceholder">&#8377;</td>
+                                <td colspan="2"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" p-5"></div>
+    <footer class="bg-warning py-4 fixed-bottom text-black">
+        <!-- Footer Content Here -->
+        <div class="container text-center">
+            <p>&copy; 2023 Mufil PvtLtd. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="/js/main.js"></script>
+
+</html>
